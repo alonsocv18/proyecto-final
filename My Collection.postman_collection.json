@@ -1,0 +1,501 @@
+{
+	"info": {
+		"_postman_id": "d0eb0826-b4e0-4bee-9044-939f989cef27",
+		"name": "My Collection",
+		"description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50320986",
+		"_collection_link": "https://alonsoemiliocordovavalverde-1459321.postman.co/workspace/Alonso-C%C3%B3rdova's-Workspace~9de35e01-a93f-461c-84f3-0b05d8c601d5/collection/50320986-d0eb0826-b4e0-4bee-9044-939f989cef27?action=share&source=collection_link&creator=50320986"
+	},
+	"item": [
+		{
+			"name": "Get data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/PROYECTO-FINAL/backend-final/index.php/productos/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"PROYECTO-FINAL",
+						"backend-final",
+						"index.php",
+						"productos",
+						""
+					]
+				},
+				"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+			},
+			"response": []
+		},
+		{
+			"name": "Post data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Add your name in the body\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": ""
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "login_test",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"usuario_correo\": \"admin@almacen.com\",\n    \"usuario_password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear_producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoria_id\": 1,\n    \"producto_codigo\": \"MOUSE GAMER\",\n    \"producto_nombre\": \"Mouse g302\",\n    \"producto_descripcion\": \"Mouse gamer luces\",\n    \"producto_precio\": 30.00,\n    \"producto_stock\": 10\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar_producto",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoria_id\": 1,\n    \"producto_codigo\": \"MOUSE-777\",\n    \"producto_nombre\": \"Mouse Gamer\",\n    \"producto_descripcion\": \"Mouse con luces LED (Codigo cambiado)\",\n    \"producto_precio\": 85.00,\n    \"producto_stock\": 100\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/productos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"productos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "info_mis_productos_anadidos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/productos?usuario_id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"productos"
+					],
+					"query": [
+						{
+							"key": "usuario_id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "info_productos_all",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/productos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"productos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "mostrar_categorias",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/categorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"categorias"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "crear_categorias",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoria_nombre\": \"Línea Blanca\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/categorias",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"categorias"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editar_categorias",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"categoria_nombre\": \"Línea Blanca EDITADO\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/categorias/4",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"categorias",
+						"4"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrar_movimiento",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "9727d84c6eb9451ebed62c314baa3c8878dc5c205dbf422ead3c4a7a8a8fe046",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"producto_id\": 1,\n    \"usuario_id\": 1,\n    \"movimiento_tipo\": \"SALIDA\",\n    \"movimiento_motivo\": \"VENTA\",\n    \"movimiento_cantidad\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/proyecto-final/backend-final/public/index.php/api/movimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"proyecto-final",
+						"backend-final",
+						"public",
+						"index.php",
+						"api",
+						"movimientos"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
