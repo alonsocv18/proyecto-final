@@ -1,41 +1,46 @@
-# Proyecto Final — Documentación
+# Proyecto Final
 
-Este repositorio agrupa dos proyectos relacionados:
+## Descripción
 
-- `backend-final`: API REST construida con PHP (Slim 2.x) y PDO.
-- `frontend-final`: aplicación cliente desarrollada con Angular 20.x.
+Aplicación compuesta por una API backend en PHP y un cliente frontend en Angular. El backend gestiona usuarios, productos, categorías y movimientos de stock; el frontend consume la API para administrar y visualizar la información.
 
-**Resumen técnico**
-
-- Backend: PHP 7.1.33, `slim/slim` 2.\*.
-- Frontend: Angular 20.3.x, TypeScript ~5.9.2, Angular CLI 20.3.x.
-- Persistencia: MySQL / MariaDB (PDO MySQL).
-
-# Proyecto Final — Instalación mínima
-
----
-
-1. Requisitos
+## Tecnologías utilizadas
 
 - Backend:
-
-  - PHP >= 7.1.33
-  - Composer 1.10+ / 2.x
-  - Extensiones PHP: `pdo`, `pdo_mysql`, `mbstring`, `zip`, `xml`, `gd`
-  - MySQL / MariaDB (soporte PDO MySQL)
-  - Dependencias del proyecto: `slim/slim` 2.\*, `phpoffice/phpspreadsheet` 1.1.0
-
+  - PHP (compatible con 7.4 / 8.x)
+  - Slim Framework 2.x (`slim/slim`)
+  - PhpSpreadsheet (`phpoffice/phpspreadsheet`)
+  - PDO (MySQL)
 - Frontend:
-  - Node.js 18.x o 20.x
-  - npm (o yarn)
-  - Angular CLI 20.x
-  - TypeScript ~5.9
+  - Angular 20.x
+  - TypeScript (~5.9)
+  - PrimeNG, Tailwind (se encuentran en `package.json`)
 
----
+## Arquitectura
 
-2. Instalación — Backend
+Backend (`backend-final`):
 
-1) Abrir terminal y situarse en el directorio del backend:
+- `public/index.php`: punto de entrada; carga autoload, middlewares y rutas.
+- `app/routes/api.php`: definición de rutas públicas y protegidas (login, status, `/api/productos`, `/api/categorias`, `/api/movimientos`, etc.).
+- `app/controllers/`: controladores que gestionan la lógica de entrada y salida HTTP.
+- `app/repositories/`: acceso a datos y consultas SQL.
+- `app/models/`: representaciones sencillas de entidades.
+- `app/middleware/`: autenticación y verificación de token/API key.
+- `app/core/Database.php`: manejo de la conexión PDO a la BD.
+
+Frontend (`frontend-final`):
+
+- `src/main.ts`, `src/index.html`, `src/styles.scss`: arranque y assets.
+- `src/app/`: módulo principal con submódulos `core/`, `features/`, `shared/`.
+- `angular.json` y `package.json`: configuración de build y scripts.
+
+## Instalación
+
+Secciones separadas para backend y frontend. No incluye valores ni secretos; suministra la configuración necesaria en tu entorno (variables del sistema, gestor de secretos o archivos locales no versionados).
+
+Backend
+
+1. Situarse en el directorio del backend:
 
 ```powershell
 cd backend-final
@@ -47,37 +52,56 @@ cd backend-final
 composer install --no-interaction --prefer-dist
 ```
 
-3. Proveer las variables de entorno/secretos necesarias fuera del repositorio (por ejemplo, en el gestor de variables del sistema o en el entorno del servidor). No incluir valores en el repositorio.
+3. Proveer la configuración necesaria (conexión a base de datos y secretos) fuera del repositorio. Revisa `app/core/Database.php` para conocer las variables de entorno que el proyecto lee.
 
-4. Crear la base de datos y las tablas requeridas (las migraciones no están incluidas en el repositorio).
+4. Crear la base de datos y las tablas requeridas. El proyecto no incluye migraciones automatizadas; importa o ejecuta el esquema SQL que uses en tu entorno.
 
-5. Servir la aplicación mediante su servidor web configurado apuntando a `backend-final/public`, o bien usar el servidor PHP embebido para pruebas locales.
+5. Ejecutar la aplicación (opciones):
 
----
+- Deploy en servidor web (configurar VirtualHost/DocumentRoot a `backend-final/public`).
+- Prueba local con PHP embebido:
 
-3. Instalación — Frontend
+```powershell
+# Desde el directorio backend-final
+php -S localhost:8000 -t public
+```
 
-1) Abrir terminal y situarse en el directorio del frontend:
+FrontEnd
+
+1. Situarse en el directorio del frontend:
 
 ```powershell
 cd frontend-final
 ```
 
-2. Instalar dependencias de Node:
+2. Instalar dependencias de Node (recomendado `npm ci` para entornos reproducibles):
 
 ```powershell
-npm i
+npm ci
 ```
 
-3. Ejecutar en modo desarrollo o compilar para producción según necesites:
+3. Ejecutar en modo desarrollo:
 
 ```powershell
-# desarrollo
-npm start o ng serve
-# compilación
+npm start
+```
+
+`npm start` ejecuta el script `ng serve` definido en `package.json`. Alternativas:
+
+```powershell
+npx ng serve --configuration development
+# o si tienes Angular CLI global
+ng serve --configuration development
+```
+
+4. Compilar para producción:
+
+```powershell
 npm run build
 ```
 
----
+Notas finales
+
+- Este README documenta la instalación y la arquitectura. No contiene credenciales ni valores sensibles.
 
 Fin.
