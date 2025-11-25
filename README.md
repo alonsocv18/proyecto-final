@@ -5,27 +5,13 @@ Este repositorio agrupa dos proyectos relacionados:
 - `backend-final`: API REST construida con PHP (Slim 2.x) y PDO.
 - `frontend-final`: aplicación cliente desarrollada con Angular 20.x.
 
-Este documento describe requisitos, arquitectura, buenas prácticas de seguridad (no incluir secretos en el repositorio) y pasos reproducibles para instalar y ejecutar el sistema en un entorno local.
-
 **Resumen técnico**
 
 - Backend: PHP 7.1.33, `slim/slim` 2.\*.
 - Frontend: Angular 20.3.x, TypeScript ~5.9.2, Angular CLI 20.3.x.
 - Persistencia: MySQL / MariaDB (PDO MySQL).
 
-**Principios de seguridad aplicados**
-
-- No almacenar credenciales, claves ni endpoints sensibles en el repositorio.
-- Usar un archivo `*.env` local (no versionado) o variables de entorno en el servidor/CI.
-- Proveer un `*.env.example` con nombres de variables y valores de ejemplo no sensibles.
-
-Si deseas, puedo añadir `backend-final/.env.example` y `backend-final/schema.sql` para facilitar la configuración inicial.
-
-**Requisitos mínimos**
-
 # Proyecto Final — Instalación mínima
-
-Este archivo contiene únicamente tres secciones: requisitos, instalación backend e instalación frontend.
 
 ---
 
@@ -80,7 +66,7 @@ cd frontend-final
 2. Instalar dependencias de Node:
 
 ```powershell
-npm ci
+npm i
 ```
 
 3. Ejecutar en modo desarrollo o compilar para producción según necesites:
@@ -95,7 +81,3 @@ npm run build
 ---
 
 Fin.
-
-```ts
-
-```
