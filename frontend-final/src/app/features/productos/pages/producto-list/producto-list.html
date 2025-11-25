@@ -1,0 +1,59 @@
+<div class="card p-4">
+    <!-- Encabezado y Botón Nuevo -->
+    <div class="flex justify-content-between align-items-center mb-4">
+        <h2 class="text-2xl font-bold text-gray-800">Inventario de Productos</h2>
+        <p-button label="Nuevo Producto" icon="pi pi-plus" (onClick)="crearProducto()"
+            styleClass="p-button-raised p-button-primary">
+        </p-button>
+    </div>
+
+    <!-- Tabla PrimeNG -->
+    <p-table [value]="productos" [loading]="loading" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20]"
+        styleClass="p-datatable-striped p-datatable-sm" responsiveLayout="scroll">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="producto_codigo">SKU <p-sortIcon field="producto_codigo"></p-sortIcon></th>
+                <th pSortableColumn="producto_nombre">Producto <p-sortIcon field="producto_nombre"></p-sortIcon></th>
+                <th pSortableColumn="categoria_nombre">Categoría <p-sortIcon field="categoria_nombre"></p-sortIcon></th>
+                <th pSortableColumn="producto_precio" class="text-right">Precio <p-sortIcon
+                        field="producto_precio"></p-sortIcon></th>
+                <th pSortableColumn="producto_stock" class="text-center">Stock <p-sortIcon
+                        field="producto_stock"></p-sortIcon></th>
+                <th>Acciones</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-prod>
+            <tr>
+                <td class="font-medium">{{ prod.producto_codigo }}</td>
+                <td>{{ prod.producto_nombre }}</td>
+                <td>
+                    <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+                        {{ prod.categoria_nombre }}
+                    </span>
+                </td>
+                <td class="text-right">{{ prod.producto_precio | currency:'USD' }}</td>
+                <td class="text-center">
+                    <span [class]="prod.producto_stock < 5 ? 'text-red-600 font-bold' : 'text-green-600'">
+                        {{ prod.producto_stock }}
+                    </span>
+                </td>
+                <td>
+                    <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text p-button-warning"
+                        (onClick)="editarProducto(prod.producto_id)">
+                    </p-button>
+                </td>
+            </tr>
+        </ng-template>
+
+        <!-- Mensaje si no hay datos -->
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="6" class="text-center p-4">
+                    No se encontraron productos. ¡Crea el primero!
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

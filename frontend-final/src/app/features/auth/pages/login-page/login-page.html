@@ -1,0 +1,89 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8 bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+
+        <div class="text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900">
+                Bienvenido de nuevo
+            </h2>
+            <p class="mt-2 text-sm text-gray-600">
+                Ingresa tus credenciales para acceder a tu cuenta
+            </p>
+        </div>
+
+        <!-- MENSAJE DE ERROR DEL BACKEND -->
+        @if (errorMessage) {
+        <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative" role="alert">
+            <strong class="font-bold">Error: </strong>
+            <span class="block sm:inline">{{ errorMessage }}</span>
+        </div>
+        }
+
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-8 space-y-6">
+
+            <!-- EMAIL -->
+            <div class="space-y-2">
+                <label for="email" class="block text-sm font-medium text-gray-700">
+                    Correo electrónico
+                </label>
+                <div class="relative">
+                    <input id="email" type="email" formControlName="email" autocomplete="username"
+                        placeholder="tu@ejemplo.com"
+                        class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 transition-all duration-200"
+                        [class.ring-red-500]="isFieldInvalid('email')" />
+                </div>
+                @if (isFieldInvalid('email')) {
+                <p class="text-xs text-red-500 mt-1">
+                    Por favor, ingresa un correo válido.
+                </p>
+                }
+            </div>
+
+            <!-- PASSWORD -->
+            <div class="space-y-2">
+                <div class="flex items-center justify-between">
+                    <label for="password" class="block text-sm font-medium text-gray-700">
+                        Contraseña
+                    </label>
+                </div>
+                <div class="relative">
+                    <input id="password" type="password" formControlName="password" autocomplete="current-password"
+                        placeholder="••••••••"
+                        class="block w-full rounded-lg border-0 py-2.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 transition-all duration-200"
+                        [class.ring-red-500]="isFieldInvalid('password')" />
+                </div>
+                @if (isFieldInvalid('password')) {
+                <p class="text-xs text-red-500 mt-1">
+                    La contraseña es obligatoria.
+                </p>
+                }
+            </div>
+
+            <!-- BOTÓN -->
+            <div>
+                <button type="submit" [disabled]="loginForm.invalid || loading"
+                    class="flex w-full justify-center rounded-lg bg-indigo-600 px-3 py-2.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                    @if (loading) {
+                    <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg"
+                        fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
+                        </circle>
+                        <path class="opacity-75" fill="currentColor"
+                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                        </path>
+                    </svg>
+                    Iniciando...
+                    } @else {
+                    Iniciar Sesión
+                    }
+                </button>
+            </div>
+        </form>
+
+        <p class="text-center text-sm text-gray-500">
+            ¿No tienes una cuenta?
+            <a href="#" class="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 transition-colors">
+                Regístrate aquí
+            </a>
+        </p>
+    </div>
+</div>
